@@ -1,0 +1,151 @@
+.header{
+  margin: auto;
+  background-color: #0B0B0B;
+  color: white;
+
+  &-small{
+    display: flex;
+    justify-content: flex-end;
+    height: 3em;
+    border-bottom: 1px solid grey;
+    
+      &_social, &_account{
+        width: 15em;
+        height: 100%;
+        padding: 0.5em;
+        font-size: 0.8em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-right: 1px solid grey;
+        border-left: 1px solid grey;
+        margin: auto 0.1em auto 0.1em;
+      }
+      &_account-btn1, &_account-btn2{
+        height: 2em;
+        width: 8em;
+        margin: 0.5em;
+        border: none;
+        border-radius: 15px;
+      }
+      &_account-btn2{
+        background-color: rgb(238, 149, 149);
+      }
+      &_account-btn1{
+        background-color: rgb(139, 186, 247);
+      }
+  
+      &_social svg{
+        fill:  white;
+        width: 25px;
+        padding: 0.2em;
+        border: 1px solid white;
+        background-color: #0B0B0B;
+        border-radius: 50%;
+        margin: auto 0.2em;
+      }
+
+  }
+
+  &-big{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    font-size: 0.7em;
+    width: 100%;
+
+    &_logo{
+      width: 20em;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100%;
+      margin: auto 1em auto 0em;
+
+      & img{
+        width: 15em;
+        vertical-align: middle;
+      }
+    }
+    &-nav-ul{
+      font-size: 1.2em;
+      display: flex;
+      justify-content: center;
+
+    }
+    &-nav-items{ 
+      padding: 2em;
+    }
+
+    &-nav-items:hover{
+      color: black;
+      background-color: white;
+    }
+
+    &_input{
+      width: 20em;
+      display: flex;
+      height: 100%;
+      justify-content: flex-end;
+      align-items: center;
+      margin: auto 2em auto 1em;
+       input{
+         width: 15em;
+         height: 2em;
+         border-radius: 15em;
+       }
+    }
+  }
+}
+
+.submenu{
+  color: black;
+  position: absolute;
+  width: 100%;
+  background-color:white;
+  left: 0;
+  top: 75px;
+  display: none;
+  z-index: 400;
+  padding-top: 1em;
+}
+
+.submenu-lists{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1em;
+}
+.submenu-lists-items_image{
+    width: 10em;
+}
+
+.submenu-lists_items{
+  // display: block;
+  margin: auto 1.5em;
+}
+
+.submenu-lists_items a:hover{
+  color: #0C95BD;
+  font-weight: bold;
+}
+.submenu-lists_items p {
+  margin-bottom: 1em;
+}
+
+.sous-nav-items button:hover{
+  background-color: white;
+  color: rgb(65, 63, 63);
+  border-bottom: 2px solid rgb(238, 110, 5);
+}
+
+.header-big-nav-items:hover .submenu{
+  display: block;
+}
+
+
+@media (min-width: 1001px) and (max-width: 1250px) {
+  .header-big_input input{
+    display: none;
+  }
+}
