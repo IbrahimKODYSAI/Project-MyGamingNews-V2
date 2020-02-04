@@ -77,8 +77,10 @@ const Article = ({ articles, match }) => {
               <span>✏</span>
             </div>
           </section>
-          <h2>{article.title}</h2>
-          <p>{article.text}</p>
+          <div className="game-article">
+            <h2>{article.title}</h2>
+            <p>{article.text}</p>
+          </div>
         </section>
         <section>
           commentaire
