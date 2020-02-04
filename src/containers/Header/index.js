@@ -11,6 +11,7 @@ const mapStateToProps = state => ({
   categories: state.categories,
   activeItem: state.activeItem,
   genres: state.genres,
+  navitems: state.navitems,
 });
 
 const mapDispatchToProps = dispatch => ({

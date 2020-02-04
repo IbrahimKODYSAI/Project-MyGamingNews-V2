@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 
 import './header.scss';
@@ -11,11 +12,17 @@ const Header = ({
   activeItem,
   setItem,
   genres,
+  navitems,
   categories,
   getAllPlateforms,
   getAllGenres,
 }) => {
-  const handleItemclick = (e, { name }) => setItem(name);
+  const handleMenuClick = (evt) => {
+    const { name } = evt.target;
+    setItem(name);
+  };
+  // const handleMenuClick = (e, { name }) => setItem(name);
+
   useEffect(() => {
     getAllPlateforms();
     getAllGenres();
@@ -38,12 +45,26 @@ const Header = ({
         </div>
         <div className="header-big">
           <div className="header-big_logo">
-            <h1><img src={logo1} alt="" /></h1>
+            <Link to="/"><h1><img src={logo1} alt="" /></h1></Link>
           </div>
           <div className="header-big-nav">
             <ul className="header-big-nav-ul">
-              <li className="header-big-nav-items"><a href="">ACCUEIL</a></li>
-              <li className="header-big-nav-items"><a href="">PLATEFORM</a>
+              <button
+                type="button"
+                className={activeItem === 'home' ? 'header-big-nav-items active' : 'header-big-nav-items '}
+                key="Accueil"
+                name="home"
+                onClick={handleMenuClick}
+              >
+                HOME
+              </button>
+              <button
+                type="button"
+                className={activeItem === 'plateform' ? 'header-big-nav-items active' : 'header-big-nav-items '}
+                key="plateform"
+                name="plateform"
+                onClick={handleMenuClick}
+              >PLATEFORM
                 <div className="submenu">
                   <ul className="submenu-lists">
                     {categories.map(category => (
@@ -51,16 +72,20 @@ const Header = ({
                         className="submenu-lists_items"
                         key={category.id}
                         name={category.name}
-                        active={activeItem === category.name}
-                        onClick={handleItemclick}
                       >
-                        <a href=""><p>{category.name}</p><img className="submenu-lists-items_image" src="src/images/playstation.png" alt="" /></a>
+                        <p>{category.name}</p><img className="submenu-lists-items_image" src={category.image} alt="" />
                       </li>
                     ))}
                   </ul>
                 </div>
-              </li>
-              <li className="header-big-nav-items"><a href="">GENRE</a>
+              </button>
+              <button
+                type="button"
+                className={activeItem === 'genre' ? 'header-big-nav-items active' : 'header-big-nav-items '}
+                key="genre"
+                name="genre"
+                onClick={handleMenuClick}
+              >GENRE
                 <div className="submenu">
                   <ul className="submenu-lists">
                     {genres.map(genre => (
@@ -68,19 +93,24 @@ const Header = ({
                         className="submenu-lists_items"
                         key={genre.id}
                         name={genre.name}
-                        active={activeItem === genre.name}
-                        onClick={handleItemclick}
                       >
                         <a href=""><p>{genre.name}</p><img className="submenu-lists-items_image" src="src/images/playstation.png" alt="" /></a>
                       </li>
                     ))}
                   </ul>
                 </div>
-              </li>
-              <li className="header-big-nav-items"><a href="">LIVE STREAM</a></li>
-              <li className="header-big-nav-items"><a href="">GALERIE</a></li>
-              <li className="header-big-nav-items"><a href="">CONTACT</a></li>
-
+              </button>
+              {navitems.map(navitem => (
+                <button
+                  type="button"
+                  className={activeItem === navitem.name ? 'header-big-nav-items active' : 'header-big-nav-items '}
+                  key={navitem.id}
+                  name={navitem.name}
+                  onClick={handleMenuClick}
+                >
+                  {navitem.name}
+                </button>
+              ))}
             </ul>
           </div>
           <div className="header-big_input">
@@ -98,6 +128,7 @@ Header.propTypes = {
   setItem: PropTypes.func.isRequired,
   genres: PropTypes.array.isRequired,
   categories: PropTypes.array.isRequired,
+  navitems: PropTypes.array.isRequired,
   getAllPlateforms: PropTypes.func.isRequired,
   getAllGenres: PropTypes.func.isRequired,
 

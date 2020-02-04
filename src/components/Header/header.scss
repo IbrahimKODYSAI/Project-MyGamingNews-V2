@@ -29,10 +29,10 @@
         border-radius: 15px;
       }
       &_account-btn2{
-        background-color: rgb(238, 149, 149);
+        background-color: rgb(241, 64, 64);
       }
       &_account-btn1{
-        background-color: rgb(139, 186, 247);
+        background-color: #2698E5;
       }
   
       &_social svg{
@@ -50,6 +50,7 @@
   &-big{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     position: relative;
     font-size: 0.7em;
     width: 100%;
@@ -73,10 +74,13 @@
       justify-content: center;
 
     }
-    &-nav-items{ 
-      padding: 2em;
+    &-nav-items{
+      border: 1px solid red;
+      border: none;
+      color: white;
+      background-color: transparent;
+      padding: 2.3em;
     }
-
     &-nav-items:hover{
       color: black;
       background-color: white;
@@ -98,13 +102,18 @@
   }
 }
 
+.header-big-nav .active{
+  color: black;
+  background-color:#2698E5;
+}
+
 .submenu{
   color: black;
   position: absolute;
   width: 100%;
   background-color:white;
   left: 0;
-  top: 75px;
+  top: 76px;
   display: none;
   z-index: 400;
   padding-top: 1em;

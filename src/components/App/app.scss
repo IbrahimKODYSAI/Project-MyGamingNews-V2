@@ -1,4 +1,7 @@
 #app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   font-size: 1.2em;
   text-align: center;
   background-color: #E5E8F0;
@@ -15,7 +18,7 @@
   }
 
 }
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 1049px) {
   #navbar{
     display: none !important;
   }

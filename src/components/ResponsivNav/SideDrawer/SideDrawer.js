@@ -16,7 +16,7 @@ const SideDrawer = ({
   show,
 }) => {
   let cssClassNames = 'side-drawer';
-  if (show === true) {
+  if (show) {
     cssClassNames = 'side-drawer open';
   }
   const handleItemClick = (e, { name }) => setItem(name);
@@ -35,7 +35,6 @@ const SideDrawer = ({
             className="platformbutton-items"
             key={category.id}
             name={category.name}
-            active={activeItem === category.name}
             onClick={handleItemClick}
           >
             <span>{category.name}</span>
@@ -68,7 +67,7 @@ const SideDrawer = ({
 };
 
 SideDrawer.propTypes = {
-  show: PropTypes.func.isRequired,
+  show: PropTypes.bool.isRequired,
   activeItem: PropTypes.string.isRequired,
   setItem: PropTypes.func.isRequired,
   genres: PropTypes.array.isRequired,

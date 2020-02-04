@@ -27,7 +27,7 @@ class ResponsivNav extends Component {
     return (
       <div>
         <Toolbar drawerclickHandler={this.drawerToggleclickHandler} />
-        <SideDrawer show={sideDrawerOpen} />;
+        <SideDrawer show={sideDrawerOpen} />
         {backDrop}
       </div>
     );
