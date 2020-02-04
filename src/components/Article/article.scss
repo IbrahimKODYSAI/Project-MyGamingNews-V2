@@ -1,0 +1,136 @@
+.p-article{
+  display: flex;
+  max-width: 1700px;
+  margin: auto;
+  justify-content: center;
+  // border: 1px solid black;
+  margin-top: 3em;
+}
+.article-block{
+  // border: 1px solid red;
+  width: 50em;
+  margin-right: 2em;
+}
+.article-recom{
+  width: 15em;
+  border: 1px solid rgb(7, 7, 7);
+}
+.youtube-b{
+  width: 100%;
+  height: 550px;
+}
+@media screen and (max-width: 1360px) {
+  .article-block{
+    // border: 1px solid red;
+    width: 35em;
+    margin-right: 2em;
+  }
+  .article-recom{
+    width: 12em;
+    // border: 1px solid blue;
+  }
+  .youtube-b{
+    width: 100%;
+    height: 400px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .p-article{
+    display: block;
+  }
+  .article-block{
+    width: 100%;
+  }
+  .article-recom{
+    width: 100%
+  }
+  .video-container {
+    margin-left: auto;
+    margin-right: auto;
+    overflow:hidden; 
+    padding-bottom:56.25%; 
+    position:relative; 
+    height: 0;
+    padding-top: 30px;
+    max-width: 50em;
+    box-shadow: 15px 8px 10px lightgrey;
+  }
+
+  .video-container iframe,
+  .video-container object,
+  .video-container iframe { 
+    left:0; 
+    top:0; 
+    height:100%; 
+    width:100%; 
+    position:absolute; 
+  }
+}
+.game-card{
+  display: flex;
+  justify-content: space-between;
+  margin: 1em 0;
+
+  & img{
+    width: 130px;
+    height: 199px;
+  }
+  &_carac{
+
+    &_column{
+      background-color: rgb(235, 214, 214);
+    }
+    &_item{
+      border-top: 1px solid gray;
+      border-bottom: 1px solid gray;
+      font-size: 0.8em;
+      padding: 0.79em 1em;
+    }
+  }
+}
+.avisNote{
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+
+  align-items: center;
+  padding: 0 0.7em;
+  
+  &-circle1{
+    margin: auto;
+    background-color: red;
+    width: 4em;
+    height: 4em;
+    border-radius: 50%;
+  }
+  &-circle2{
+    position: relative;
+    background-color: white;
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    margin: 0.5em auto;
+    & span{
+      position: absolute;
+      top: 1em;
+      left: 0.25em;
+    }
+  }
+}
+
+.userAvis{
+  display: flex;
+  flex-direction: column;
+  & span{
+    font-size: 3em;
+    margin: auto;
+    transform: rotate(135deg);
+  }
+}
+
+@media screen and (max-width: 1024px){
+  .game-card{
+    flex-direction: column;
+  }
+}

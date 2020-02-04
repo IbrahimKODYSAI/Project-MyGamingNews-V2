@@ -1,0 +1,63 @@
+.week-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 544px;
+  margin-left: 0.5em;
+}
+
+article{
+  display: flex;
+  flex-wrap: nowrap;
+  font-size: 1em;
+  overflow: hidden;
+  // border: 1px solid red;
+  justify-content: space-between;
+  height: 24.5%;
+}
+.week-box_imgbox {
+  width: 12em;
+  overflow: hidden;
+}
+.week-box_imgbox img{
+  height: 100%;
+  width: 100%;
+  transform: scale(1);
+  transition: all 300ms ease-out;
+}
+
+.week-box_imgbox img:hover{
+  transform: scale(1.08);
+}
+.week-box_content{
+  text-align: justify;
+  padding: 0.5em;
+  width: 23em;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  // border: 1px solid green;
+  & h3 {
+    font-size: 1em;
+    font-weight: bold;
+    color: #2698E5;
+  }
+
+  & p{
+    // font-size: 0.8em;
+    // color: white;
+    padding: 0.2em 0;
+
+  }
+
+  & span{
+    float: right;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: rgb(16, 27, 36);
+    // color: white;
+    &:after{
+      content: "➠";
+      padding: 0.2em;
+      line-height: 1.2em;
+    }
+  }
+}
