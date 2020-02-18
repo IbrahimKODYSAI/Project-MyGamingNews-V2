@@ -13,7 +13,7 @@ const Articles = (props) => {
       {articlesList.map(article => (
         <article key={article.id}>
           <div className="container1-card_imgbox">
-            <Link to={`/article/${article.id}`} exact><img src={article.image} alt="" /></Link>
+            <Link to={`/article/${article.id}`} exact="true"><img src={article.image} alt="" /></Link>
           </div>
           <div className="container1-card_label">
             <h3>{article.title}</h3>

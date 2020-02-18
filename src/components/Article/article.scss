@@ -128,13 +128,6 @@
     transform: rotate(135deg);
   }
 }
-
-@media screen and (max-width: 1024px){
-  .game-card{
-    flex-direction: column;
-  }
-}
- 
 .game-article{
 
   & h2{
@@ -147,5 +140,48 @@
     text-align: justify;
     font-size: 0.8em;
     line-height: 1.6;
+  }
+}
+.zone-text{
+  margin: 3em 0;
+}
+.form-text{
+  & textarea {
+    font-family: Arial,Helvetica Neue,Helvetica,sans-serif;
+    font-size: 0.8em;
+    border: none;
+    width: 100%;
+    height: 30px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    resize: none;
+    border-bottom: 2px solid black;
+    outline: none;
+  }
+  &_button{
+    font-size: 0.6em;
+    font-weight: bold;
+    float: right;
+    color: white;
+    background-color: #065FD4;
+    padding: .8em 1em;
+  }
+}
+
+.message-list{
+  &_item{
+    width: 100%;
+    text-align: left;
+    background-color: rgb(246, 250, 255);
+    border-radius: 0.5em;
+    padding: 1em;
+    margin: 1em 0;
+    font-size: 0.8em;
+  }
+}
+
+@media screen and (max-width: 1024px){
+  .game-card{
+    flex-direction: column;
   }
 }

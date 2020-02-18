@@ -5,7 +5,7 @@ const initialState = {
       {
         id: '8',
         videoId: 'bxFoRCvEjUA',
-        image: 'https://a.allegroimg.com/s512/031565/5e9f46d24abc988b39eb94d0af3f/Mortal-Kombat-11-Steam-PC-KLUCZ',
+        image: 'http://image.jeuxvideo.com/medias-md/156382/1563818741-4350-card.jpg',
         title: 'Mortal Kombat 11: release date has been leaked',
         resume: 'Kombat 11 et les leaks, c\'est une longue histoire d\'amour. Après le roster du jeu qui a été divulgué en avance...',
         text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium deleniti itaque voluptas perferendis debitis. Consectetur modi dicta dolor accusamus? Omnis, temporibus obcaecati quasi recusandae ex officiis necessitatibus ipsam voluptates vel qui optio, accusantium animi rem mollitia repellat quod nemo, dolores atque numquam totam voluptatibus cumque. Itaque officiis saepe cumque. Facere repudiandae tempore quisquam perferendis quaerat quae harum, reprehenderit necessitatibus ipsum tenetur fugit, vero tempora. Officia similique reprehenderit debitis quia sint incidunt voluptatem unde, magni facere quod odio accusamus culpa praesentium eum vel, ducimus rem iste inventore dolore iusto vero provident dolor? Repellat, unde culpa! Facere architecto debitis, explicabo optio tenetur quae? Explicabo sed, molestiae ratione qui ut magnam aperiam. Odio ipsum tenetur facere fugiat, distinctio eveniet sed quas facilis deserunt esse eligendi, quod a autem sit aut, veniam omnis porro vel blanditiis voluptatibus corrupti. Reiciendis quae et quidem delectus earum quam quaerat. Natus nihil eum dolorem consectetur pariatur quia libero. Perspiciatis harum eaque molestias sed reiciendis. Voluptatibus numquam quos beatae nostrum dolorem quae voluptatem similique temporibus! Voluptatum totam at quos quisquam quaerat. Ab odit qui maiores! Eius voluptates, consectetur ex impedit dolorum est atque rerum explicabo inventore qui voluptatem quidem, quam aliquam enim nemo beatae cumque natus in. Ex consectetur quibusdam labore adipisci, dolor nostrum a? Harum, optio praesentium. Dolorem eius perferendis velit amet suscipit laboriosam rerum ipsa reprehenderit quisquam enim nulla accusamus dignissimos quis sequi nam accusantium architecto doloribus, ut corporis vel voluptas. Deleniti perspiciatis facilis nemo soluta animi, excepturi enim itaque iusto, quae corrupti recusandae explicabo fugiat officia.',
@@ -194,7 +194,7 @@ const initialState = {
       {
         id: '8',
         videoId: 'bxFoRCvEjUA',
-        image: 'https://a.allegroimg.com/s512/031565/5e9f46d24abc988b39eb94d0af3f/Mortal-Kombat-11-Steam-PC-KLUCZ',
+        image: 'http://image.jeuxvideo.com/medias-md/156382/1563818741-4350-card.jpg',
         title: 'Mortal Kombat 11: release date has been leaked',
         resume: 'Kombat 11 et les leaks, c\'est une longue histoire d\'amour. Après le roster du jeu qui a été divulgué en avance...',
         text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium deleniti itaque voluptas perferendis debitis. Consectetur modi dicta dolor accusamus? Omnis, temporibus obcaecati quasi recusandae ex officiis necessitatibus ipsam voluptates vel qui optio, accusantium animi rem mollitia repellat quod nemo, dolores atque numquam totam voluptatibus cumque. Itaque officiis saepe cumque. Facere repudiandae tempore quisquam perferendis quaerat quae harum, reprehenderit necessitatibus ipsum tenetur fugit, vero tempora. Officia similique reprehenderit debitis quia sint incidunt voluptatem unde, magni facere quod odio accusamus culpa praesentium eum vel, ducimus rem iste inventore dolore iusto vero provident dolor? Repellat, unde culpa! Facere architecto debitis, explicabo optio tenetur quae? Explicabo sed, molestiae ratione qui ut magnam aperiam. Odio ipsum tenetur facere fugiat, distinctio eveniet sed quas facilis deserunt esse eligendi, quod a autem sit aut, veniam omnis porro vel blanditiis voluptatibus corrupti. Reiciendis quae et quidem delectus earum quam quaerat. Natus nihil eum dolorem consectetur pariatur quia libero. Perspiciatis harum eaque molestias sed reiciendis. Voluptatibus numquam quos beatae nostrum dolorem quae voluptatem similique temporibus! Voluptatum totam at quos quisquam quaerat. Ab odit qui maiores! Eius voluptates, consectetur ex impedit dolorum est atque rerum explicabo inventore qui voluptatem quidem, quam aliquam enim nemo beatae cumque natus in. Ex consectetur quibusdam labore adipisci, dolor nostrum a? Harum, optio praesentium. Dolorem eius perferendis velit amet suscipit laboriosam rerum ipsa reprehenderit quisquam enim nulla accusamus dignissimos quis sequi nam accusantium architecto doloribus, ut corporis vel voluptas. Deleniti perspiciatis facilis nemo soluta animi, excepturi enim itaque iusto, quae corrupti recusandae explicabo fugiat officia.',
@@ -250,7 +250,7 @@ const initialState = {
           'Classicfication',
         ],
         caracReponses: [
-          'Electronic Arts, Resapwn Entertainement',
+          'Electronic Arts, Respawn Entertainement',
           '15 novembre 2019',
           'Aventure',
           'Science-Fiction',
@@ -293,6 +293,17 @@ const initialState = {
     { id: 3, name: 'CONTACT' },
 
   ],
+  newMessage: '',
+  messageList: [],
+
+  loginEmail: '',
+  loginPassword: '',
+  registerLastName: '',
+  registerFirstName: '',
+  registerUserName: '',
+  registerEmail: '',
+  registerPassword: '',
+  email: '',
 };
 
 // == Types
@@ -300,7 +311,8 @@ export const GET_PLATEFORM = 'GET_PLATEFORM';
 export const GET_GENRE = 'GET_GENRE';
 
 const SET_ACTIVE_ITEM = 'SET_ACTIVE_ITEM';
-
+const ON_INPUT_CHANGE = 'ON_INPUT_CHANGE';
+const ON_SUBMIT_COMMENTARY = 'ON_SUBMIT_COMMENTARY';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -310,7 +322,30 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         activeItem: action.name,
       };
-
+    case ON_INPUT_CHANGE:
+      return {
+        ...state,
+        [action.name]: action.value,
+      };
+    case ON_SUBMIT_COMMENTARY: {
+      const { newMessage } = state;
+      const { messageList } = state;
+      const allIds = messageList.map(message => message.id);
+      const id = allIds.length > 0 ? Math.max(...allIds) + 1 : 1;
+      const newArrivedMessage = {
+        id,
+        value: newMessage,
+      };
+      const newMessageList = [
+        ...messageList,
+        newArrivedMessage,
+      ];
+      return {
+        ...state,
+        messageList: newMessageList,
+        newMessage: '',
+      };
+    }
     default:
       return state;
   }
@@ -327,6 +362,13 @@ export const getPlateform = () => ({
 export const getGenres = () => ({
   type: GET_GENRE,
 });
-
+export const onInputChange = (name, value) => ({
+  type: ON_INPUT_CHANGE,
+  name,
+  value,
+});
+export const onSubmitForm = () => ({
+  type: ON_SUBMIT_COMMENTARY,
+});
 // == Export
 export default reducer;
