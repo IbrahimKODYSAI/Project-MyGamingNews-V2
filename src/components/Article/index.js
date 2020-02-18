@@ -1,10 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import YouTube from 'react-youtube';
+
 import './article.scss';
 
 
-const Article = ({ articles, match }) => {
+const Article = ({
+  articles,
+  match,
+  InputChange,
+  newMessage,
+  submitForm,
+  messageList,
+}) => {
   const article = articles.news.find(element => element.id === match.params.id);
   const opts = {
     playerVars: {
@@ -33,6 +41,14 @@ const Article = ({ articles, match }) => {
   };
   const questions = article.caracQuestions;
   const reponses = article.caracReponses;
+  const handleChange = (event) => {
+    const { name: fieldName, value: fieldValue } = event.target;
+    InputChange(fieldName, fieldValue);
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    submitForm();
+  };
   return (
     <div className="p-article">
       <div className="article-block">
@@ -83,11 +99,41 @@ const Article = ({ articles, match }) => {
           </div>
         </section>
         <section>
-          commentaire
+          <div className="zone-text">
+            <form onSubmit={handleSubmit} className="form-text">
+              <textarea
+                onChange={handleChange}
+                type="newMessage"
+                value={newMessage}
+                name="newMessage"
+                placeholder="Ecris ton commentaire ici..."
+              />
+              <button type="submit" className="form-text_button">AJOUTER UN COMMENTAIRE</button>
+            </form>
+          </div>
+          <div>
+            <ul className="message-list">
+              <li className="message-list_item">
+                <p>heloooooooooooooooooooooooooooooooooo</p>
+              </li>
+              <li className="message-list_item">heloooooooooooooooooooooooooooooooooo</li>
+              <li className="message-list_item">heloooooooooooooooooooooooooooooooooo</li>
+
+              {messageList.map(message => (
+                <li className="message-list_item">
+                  {message.value}
+                </li>
+              ))}
+            </ul>
+          </div>
         </section>
       </div>
       <div className="article-recom">
-        article recommendé
+        {articles.news.map(newArticle => (
+          <p key={newArticle.id}>
+            {newArticle.title[Math.floor(Math.random() * newArticle.title)]}
+          </p>
+        ))}
       </div>
     </div>
   );
@@ -96,6 +142,10 @@ const Article = ({ articles, match }) => {
 Article.propTypes = {
   match: PropTypes.object.isRequired,
   articles: PropTypes.object.isRequired,
+  InputChange: PropTypes.func.isRequired,
+  newMessage: PropTypes.string.isRequired,
+  submitForm: PropTypes.func.isRequired,
+  messageList: PropTypes.array.isRequired,
 };
 
 export default Article;
