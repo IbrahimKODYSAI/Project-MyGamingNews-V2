@@ -23,6 +23,6 @@
     "no-underscore-dangle": "off"
   },
   "settings": {
-    "import/resolver": "webpack"
+    "import/resolver": "webpack",
   }
 }

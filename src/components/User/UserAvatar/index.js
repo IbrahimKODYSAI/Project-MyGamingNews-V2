@@ -44,7 +44,7 @@ class UserAvatar extends Component {
           </div>
           <br />
           <div>
-            <button type="button">Upload</button>
+            <button>Upload</button>
           </div>
           <img className="avatar-img" src={this.state.imageURL} alt="img" />
         </form>
@@ -53,4 +53,4 @@ class UserAvatar extends Component {
   }
 }
 
-export default UserAvatar;
+export default UserAvatar; 

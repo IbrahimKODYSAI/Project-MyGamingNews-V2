@@ -5,13 +5,14 @@ import { connect } from 'react-redux';
 import Header from 'src/components/Header';
 
 // Action Creators
-import { setActiveItem, getPlateform, getGenres } from 'src/store/reducer';
+import { setActiveItem, getPlateform, getGenres, getUserInfo } from 'src/store/reducer';
 
 const mapStateToProps = state => ({
   categories: state.categories,
   activeItem: state.activeItem,
   genres: state.genres,
   navitems: state.navitems,
+  avatar: state.userInfo.avatar,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -24,6 +25,9 @@ const mapDispatchToProps = dispatch => ({
   getAllGenres: (name) => {
     dispatch(getGenres(name));
   },
+  userInfo: () => {
+    dispatch(getUserInfo());
+  }
 });
 
 // Container
