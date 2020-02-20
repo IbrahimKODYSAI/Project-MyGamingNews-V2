@@ -304,15 +304,43 @@ const initialState = {
   registerEmail: '',
   registerPassword: '',
   email: '',
+
+  userInfo: {
+    firstName: '',
+    lastName: '',
+    userName: '',
+    mail: '',
+    avatar: '3.jpg',
+    role: '',
+  },
+  creatTitle: '',
+  creatText: '',
+  createResume: '',
+  creatGameName: '',
+  creatVideo: '',
+  creatImage: '',
+  creatPlatform: '',
+  creatPlatform2: '',
+  creatPlatform3: '',
+  creatGenre: '',
+  creatGenre2: '',
+  creatGenre3: '',
 };
 
 // == Types
+export const ON_SUBMIT_REGISTER = 'ON_SUBMIT_REGISTER';
+export const ON_SUBMIT_LOGIN = 'ON_SUBMIT_LOGIN';
+export const GET_USER_INFO = 'GET_USER_INFO';
+export const ON_SUBMIT_ARTICLE = 'ON_SUBMIT_ARTICLE';
 export const GET_PLATEFORM = 'GET_PLATEFORM';
 export const GET_GENRE = 'GET_GENRE';
 
 const SET_ACTIVE_ITEM = 'SET_ACTIVE_ITEM';
 const ON_INPUT_CHANGE = 'ON_INPUT_CHANGE';
+const SET_USER_LOGIN = 'SET_USER_LOGIN';
+const SET_USER_INFO = 'SET_USER_INFO';
 const ON_SUBMIT_COMMENTARY = 'ON_SUBMIT_COMMENTARY';
+const CLEAN_REGISTER_FIELD = 'CLEAN_REGISTER_FIELD';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -346,6 +374,35 @@ const reducer = (state = initialState, action = {}) => {
         newMessage: '',
       };
     }
+    case SET_USER_INFO:
+      return {
+        ...state,
+        userInfo: {
+          firstName: action.firstName,
+          lastName: action.lastName,
+          userName: action.userName,
+          mail: action.mail,
+          role: action.role,
+          avatar: action.avatar,
+        },
+      };
+    case SET_USER_LOGIN:
+      return {
+        ...state,
+        token: action.token,
+      };
+    case CLEAN_REGISTER_FIELD: {
+      return {
+        ...state,
+        loginEmail: '',
+        loginPassword: '',
+        registerLastName: '',
+        registerFirstName: '',
+        registerUserName: '',
+        registerEmail: '',
+        registerPassword: '',
+      };
+    }
     default:
       return state;
   }
@@ -369,6 +426,35 @@ export const onInputChange = (name, value) => ({
 });
 export const onSubmitForm = () => ({
   type: ON_SUBMIT_COMMENTARY,
+});
+
+export const onSubmitRegister = () => ({
+  type: ON_SUBMIT_REGISTER,
+});
+export const onSubmitLogin = () => ({
+  type: ON_SUBMIT_LOGIN,
+});
+export const getUserInfo = () => ({
+  type: GET_USER_INFO,
+});
+export const setUsersLogin = token => ({
+  type: SET_USER_LOGIN,
+  token,
+})
+export const setUserInfo = (userName, firstName, lastName, mail, role, avatar) => ({
+  type: SET_USER_INFO,
+  userName,
+  firstName,
+  lastName,
+  mail,
+  role,
+  avatar,
+});
+export const onsubmitArticle = () => ({
+  type: ON_SUBMIT_ARTICLE,
+});
+export const cleanRegisterFields = () => ({
+  type: CLEAN_REGISTER_FIELD,
 });
 // == Export
 export default reducer;

@@ -11,7 +11,7 @@ import Article from 'src/containers/Article';
 import Login from 'src/containers/Login';
 import SignUp from 'src/containers/SignUp';
 import ForgottenPassword from 'src/containers/ForgottenPassword';
-import User from 'src/components/User';
+import User from 'src/containers/User';
 import Footer from 'src/components/Footer';
 
 // import Footer from 'src/components/Footer';

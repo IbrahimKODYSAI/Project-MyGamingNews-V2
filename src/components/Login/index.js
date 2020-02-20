@@ -45,10 +45,12 @@ const Login = ({
             {dataText.login.submit}
           </button>
         </form>
-        <Link to="/forgotten-password" exacte>
-          <a className="app-link">
-            {dataText.login.link}
-          </a>
+        <Link
+          to="/forgotten-password"
+          exacte="true"
+          className="app-link"
+        >
+          {dataText.login.link}
         </Link>
       </div>
     </div>

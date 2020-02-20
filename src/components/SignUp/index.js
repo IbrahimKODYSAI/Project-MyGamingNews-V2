@@ -66,12 +66,11 @@ const SignUp = ({
             {dataText.login.submit}
           </button>
           <Link
+            className="app-link"
             to="/login"
-            exact
+            exact="true"
           >
-            <a className="app-link">
-              {dataText.login.link}
-            </a>
+            {dataText.login.link}
           </Link>
         </form>
       </div>
