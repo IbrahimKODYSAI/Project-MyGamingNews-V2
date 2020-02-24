@@ -5,7 +5,7 @@ const initialState = {
       {
         id: '8',
         videoId: 'bxFoRCvEjUA',
-        image: 'http://image.jeuxvideo.com/medias-md/156382/1563818741-4350-card.jpg',
+        image: 'https://www.sitegeek.fr/wp-content/uploads/2019/05/A1EVcaKAdxS-840x400.jpg',
         title: 'Mortal Kombat 11: release date has been leaked',
         resume: 'Kombat 11 et les leaks, c\'est une longue histoire d\'amour. Après le roster du jeu qui a été divulgué en avance...',
         text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium deleniti itaque voluptas perferendis debitis. Consectetur modi dicta dolor accusamus? Omnis, temporibus obcaecati quasi recusandae ex officiis necessitatibus ipsam voluptates vel qui optio, accusantium animi rem mollitia repellat quod nemo, dolores atque numquam totam voluptatibus cumque. Itaque officiis saepe cumque. Facere repudiandae tempore quisquam perferendis quaerat quae harum, reprehenderit necessitatibus ipsum tenetur fugit, vero tempora. Officia similique reprehenderit debitis quia sint incidunt voluptatem unde, magni facere quod odio accusamus culpa praesentium eum vel, ducimus rem iste inventore dolore iusto vero provident dolor? Repellat, unde culpa! Facere architecto debitis, explicabo optio tenetur quae? Explicabo sed, molestiae ratione qui ut magnam aperiam. Odio ipsum tenetur facere fugiat, distinctio eveniet sed quas facilis deserunt esse eligendi, quod a autem sit aut, veniam omnis porro vel blanditiis voluptatibus corrupti. Reiciendis quae et quidem delectus earum quam quaerat. Natus nihil eum dolorem consectetur pariatur quia libero. Perspiciatis harum eaque molestias sed reiciendis. Voluptatibus numquam quos beatae nostrum dolorem quae voluptatem similique temporibus! Voluptatum totam at quos quisquam quaerat. Ab odit qui maiores! Eius voluptates, consectetur ex impedit dolorum est atque rerum explicabo inventore qui voluptatem quidem, quam aliquam enim nemo beatae cumque natus in. Ex consectetur quibusdam labore adipisci, dolor nostrum a? Harum, optio praesentium. Dolorem eius perferendis velit amet suscipit laboriosam rerum ipsa reprehenderit quisquam enim nulla accusamus dignissimos quis sequi nam accusantium architecto doloribus, ut corporis vel voluptas. Deleniti perspiciatis facilis nemo soluta animi, excepturi enim itaque iusto, quae corrupti recusandae explicabo fugiat officia.',
@@ -259,6 +259,8 @@ const initialState = {
       },
     ],
   },
+  article: {
+  },
   categories: [
     {
       id: '1',
@@ -286,7 +288,7 @@ const initialState = {
     { id: 4, name: 'MOBA' },
     { id: 5, name: 'ARCADE' },
   ],
-  activeItem: 'home',
+  activeItem: '',
   navitems: [
     { id: 1, name: 'LIVE STREAM' },
     { id: 2, name: 'GALERIE' },
@@ -325,6 +327,16 @@ const initialState = {
   creatGenre: '',
   creatGenre2: '',
   creatGenre3: '',
+
+  gamesList: [],
+  articlesSort: [{
+    id: '',
+    videoId: '',
+    image: '',
+    title: '',
+    resume: '',
+    text: '',
+  }],
 };
 
 // == Types
@@ -332,14 +344,27 @@ export const ON_SUBMIT_REGISTER = 'ON_SUBMIT_REGISTER';
 export const ON_SUBMIT_LOGIN = 'ON_SUBMIT_LOGIN';
 export const GET_USER_INFO = 'GET_USER_INFO';
 export const ON_SUBMIT_ARTICLE = 'ON_SUBMIT_ARTICLE';
+export const GET_ARTICLES = 'GET_ARTICLES';
+export const GET_ONE_ARTICLE = 'GET_ONE_ARTICLE';
+export const GET_GAMES = 'GET_GAMES';
 export const GET_PLATEFORM = 'GET_PLATEFORM';
 export const GET_GENRE = 'GET_GENRE';
+export const ON_SUBMIT_COMMENTARY = 'ON_SUBMIT_COMMENTARY';
+export const GET_COMMENTARY = 'GET_COMMENTARY';
+export const SORT_ARTICLES_BY_PLATEFROM = 'SORT_ARTICLES_BY_PLATEFROM';
+export const SET_SORT_ARTICLES_BY_GENRE = 'SET_SORT_ARTICLES_BY_GENRE';
 
 const SET_ACTIVE_ITEM = 'SET_ACTIVE_ITEM';
 const ON_INPUT_CHANGE = 'ON_INPUT_CHANGE';
 const SET_USER_LOGIN = 'SET_USER_LOGIN';
 const SET_USER_INFO = 'SET_USER_INFO';
-const ON_SUBMIT_COMMENTARY = 'ON_SUBMIT_COMMENTARY';
+const SET_ARTICLES = 'SET_ARTICLES';
+const SET_ONE_ARTICLE = 'SET_ONE_ARTICLE';
+const SET_GAMES = 'SET_GAMES';
+const SET_PLATEFORM = 'SET_PLATEFORM';
+const SET_GENRE = 'SET_GENRE';
+const SET_COMMENTARY = 'SET_COMMENTARY';
+const SET_SORT_ARTICLES = 'SET_SORT_ARTICLES';
 const CLEAN_REGISTER_FIELD = 'CLEAN_REGISTER_FIELD';
 
 // == Reducer
@@ -355,25 +380,6 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         [action.name]: action.value,
       };
-    case ON_SUBMIT_COMMENTARY: {
-      const { newMessage } = state;
-      const { messageList } = state;
-      const allIds = messageList.map(message => message.id);
-      const id = allIds.length > 0 ? Math.max(...allIds) + 1 : 1;
-      const newArrivedMessage = {
-        id,
-        value: newMessage,
-      };
-      const newMessageList = [
-        ...messageList,
-        newArrivedMessage,
-      ];
-      return {
-        ...state,
-        messageList: newMessageList,
-        newMessage: '',
-      };
-    }
     case SET_USER_INFO:
       return {
         ...state,
@@ -390,6 +396,42 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         token: action.token,
+      };
+    case SET_ARTICLES:
+      return {
+        ...state,
+        articles: action.articles,
+      };
+    case SET_ONE_ARTICLE:
+      return {
+        ...state,
+        article: action.article,
+      };
+    case SET_COMMENTARY:
+      return {
+        ...state,
+        messageList: action.commentary,
+        newMessage: '',
+      };
+    case SET_GAMES:
+      return {
+        ...state,
+        gamesList: action.gamesList,
+      };
+    case SET_PLATEFORM:
+      return {
+        ...state,
+        categories: action.plateforms,
+      };
+    case SET_GENRE:
+      return {
+        ...state,
+        genres: action.genres,
+      };
+    case SET_SORT_ARTICLES:
+      return {
+        ...state,
+        articlesSort: action.articles,
       };
     case CLEAN_REGISTER_FIELD: {
       return {
@@ -413,21 +455,22 @@ export const setActiveItem = name => ({
   type: SET_ACTIVE_ITEM,
   name,
 });
-export const getPlateform = () => ({
-  type: GET_PLATEFORM,
-});
-export const getGenres = () => ({
-  type: GET_GENRE,
-});
 export const onInputChange = (name, value) => ({
   type: ON_INPUT_CHANGE,
   name,
   value,
 });
-export const onSubmitForm = () => ({
+export const onsubmitCommentary = () => ({
   type: ON_SUBMIT_COMMENTARY,
 });
-
+export const getCommentary = articleId => ({
+  type: GET_COMMENTARY,
+  articleId,
+});
+export const setCommentary = commentary => ({
+  type: SET_COMMENTARY,
+  commentary,
+});
 export const onSubmitRegister = () => ({
   type: ON_SUBMIT_REGISTER,
 });
@@ -455,6 +498,55 @@ export const onsubmitArticle = () => ({
 });
 export const cleanRegisterFields = () => ({
   type: CLEAN_REGISTER_FIELD,
+});
+export const getArticle = () => ({
+  type: GET_ARTICLES,
+});
+
+export const setArticles = articles => ({
+  type: SET_ARTICLES,
+  articles,
+});
+export const getOneArticle = articleId => ({
+  type: GET_ONE_ARTICLE,
+  articleId,
+});
+export const setOneArticle = article => ({
+  type: SET_ONE_ARTICLE,
+  article,
+});
+export const getGamesList = () => ({
+  type: GET_GAMES,
+});
+export const setGamesList = gamesList => ({
+  type: SET_GAMES,
+  gamesList,
+});
+export const getPlateform = () => ({
+  type: GET_PLATEFORM,
+});
+export const setPlateform = plateforms => ({
+  type: SET_PLATEFORM,
+  plateforms,
+});
+export const getGenres = () => ({
+  type: GET_GENRE,
+});
+export const setGenre = genres => ({
+  type: SET_GENRE,
+  genres,
+});
+export const SortArticlesByPlateform = category => ({
+  type: SORT_ARTICLES_BY_PLATEFROM,
+  category,
+});
+export const setArticlesSort = articles => ({
+  type: SET_SORT_ARTICLES,
+  articles,
+});
+export const SortArticlesByGenre = category => ({
+  type: SET_SORT_ARTICLES_BY_GENRE,
+  category,
 });
 // == Export
 export default reducer;

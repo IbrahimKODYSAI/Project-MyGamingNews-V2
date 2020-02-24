@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './articles.scss';
 import { Link } from 'react-router-dom';
 
 
-const Articles = (props) => {
-  const { articles } = props;
+const Articles = ({ articles, getGames }) => {
+  useEffect(() => {
+    getGames();
+  }, []);
   const articlesList = articles.news;
   return (
     <section className="container1">
@@ -29,6 +31,7 @@ const Articles = (props) => {
 
 Articles.propTypes = {
   articles: PropTypes.object.isRequired,
+  getGames: PropTypes.func.isRequired,
 };
 
 export default Articles;

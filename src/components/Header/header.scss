@@ -104,7 +104,7 @@
 
 .header-big-nav .active{
   color: black;
-  background-color:#2698E5;
+  background-color:#365899;
 }
 
 .submenu{
@@ -113,7 +113,7 @@
   width: 100%;
   background-color:white;
   left: 0;
-  top: 76px;
+  top: 90px;
   display: none;
   z-index: 400;
   padding-top: 1em;
@@ -162,4 +162,13 @@
   border: 3px solid rgb(38, 135, 247);
   height: 45px !important;
   width: 45px !important;
+}
+.navitems{
+  border: none;
+  background-color: white;
+  margin-bottom: 1em;
+  &:hover{
+    color: orangered;
+    font-weight: bold;
+  }
 }

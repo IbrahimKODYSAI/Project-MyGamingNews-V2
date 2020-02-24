@@ -8,8 +8,8 @@ import Header from 'src/components/Header';
 import { setActiveItem, getPlateform, getGenres, getUserInfo } from 'src/store/reducer';
 
 const mapStateToProps = state => ({
-  categories: state.categories,
   activeItem: state.activeItem,
+  categories: state.categories,
   genres: state.genres,
   navitems: state.navitems,
   avatar: state.userInfo.avatar,

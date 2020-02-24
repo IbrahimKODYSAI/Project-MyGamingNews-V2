@@ -6,12 +6,13 @@ import { Route } from 'react-router-dom';
 // == Import : local
 import Header from 'src/containers/Header';
 import ResponsivNav from 'src/components/ResponsivNav';
-import Home from 'src/components/Home';
+import Home from 'src/containers/Home';
 import Article from 'src/containers/Article';
 import Login from 'src/containers/Login';
 import SignUp from 'src/containers/SignUp';
 import ForgottenPassword from 'src/containers/ForgottenPassword';
 import User from 'src/containers/User';
+import SortArticles from 'src/containers/SortArticles';
 import Footer from 'src/components/Footer';
 
 // import Footer from 'src/components/Footer';
@@ -34,7 +35,7 @@ const App = () => (
         <Route path="/Login" exact component={Login} />
         <Route path="/forgotten-password" exact component={ForgottenPassword} />
         <Route path="/signup" exact component={SignUp} />
-
+        <Route path="/sort/:type/:category" exact component={SortArticles} />
       </main>
     </div>
     <footer>

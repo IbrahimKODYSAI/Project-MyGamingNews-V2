@@ -1,27 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './newsoftheweek.scss';
 
-const NewsOfTheWeeks = (props) => {
+const NewsOfTheWeeks = ({ articles, getGames }) => {
 
-  const { articles } = props;
+  useEffect(() => {
+    getGames();
+  }, []);
   const NewsOfTheWeekList = articles.newsOfTheWeek;
 
   return (
     <section className="week-box">
-      {NewsOfTheWeekList.map(WeekNews => (
-        <article key={WeekNews.id}>
-          <div className="week-box_imgbox">
-            <img src={WeekNews.image} alt="" />
-          </div>
-          <div className="week-box_content">
-            <h3>{WeekNews.title}</h3>
-            <p>{WeekNews.resume}</p>
-            <span>Lire la suite</span>
-          </div>
-        </article>
-      ))}
-
+      {NewsOfTheWeekList.map((WeekNews, index) => {
+        if (index < 4) {
+          return (
+            <article key={WeekNews.id}>
+              <div className="week-box_imgbox">
+                <Link to={`/article/${WeekNews.id}`} excat="true">
+                  <img src={WeekNews.image} alt="" />
+                </Link>
+              </div>
+              <div className="week-box_content">
+                <Link to={`/article/${WeekNews.id}`} excat="true">
+                  <h3>{WeekNews.title}</h3>
+                </Link>
+                <p>{WeekNews.resume}</p>
+                <Link to={`/article/${WeekNews.id}`} excat="true">
+                  <span>Lire la suite</span>
+                </Link>
+              </div>
+            </article>
+          );
+        }
+      })}
     </section>
   );
 };
@@ -29,6 +41,7 @@ const NewsOfTheWeeks = (props) => {
 
 NewsOfTheWeeks.propTypes = {
   articles: PropTypes.object.isRequired,
+  getGames: PropTypes.func.isRequired,
 };
 
 export default NewsOfTheWeeks;
