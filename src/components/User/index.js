@@ -5,6 +5,7 @@ import './user.scss';
 import UserAvatar from 'src/components/User/UserAvatar';
 import Adminroute from 'src/containers/Adminroute';
 import UserHome from 'src/containers/UserHome';
+import UserPreferencies from 'src/containers/UserPreferencies';
 
 
 const User = ({ avatar, userInfo }) => {
@@ -28,15 +29,17 @@ const User = ({ avatar, userInfo }) => {
               </div>
             </Link>
             <div>
-              <img className="wrapper-header_img" src="./assets/netflix.jpg" alt="" />
+              <img className="wrapper-header_img" src="./assets/studyrama.jpg" alt="" />
             </div>
           </div>
           <ul className="wrapper-nav">
             <Link to="/user/userhome" exact="tue">
               {/* className={activeItem === 'home' ? 'wrapper-nav_item active' : 'wrapper-nav_item'} */}
-              <li className="wrapper-nav_item">A propos </li>
+              <li className="wrapper-nav_item"><button type="button"> A propos </button></li>
             </Link>
-            <li className="wrapper-nav_item">Favoris</li>
+            <Link to="/user/Preferencies" exact>
+              <li className="wrapper-nav_item">Favoris</li>
+            </Link>
             <Link to="/user/admin" exact="true">
               <li className="wrapper-nav_item">Admin</li>
             </Link>
@@ -46,7 +49,7 @@ const User = ({ avatar, userInfo }) => {
         <div>
           <Route path="/user/Avatar" exact component={UserAvatar} />
           <Route path="/user/userhome" exact component={UserHome} />
-
+          <Route path="/user/Preferencies" exact component={UserPreferencies} />
           <Adminroute />
         </div>
       </div>

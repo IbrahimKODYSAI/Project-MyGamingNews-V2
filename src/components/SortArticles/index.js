@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // == Import : local
-// import 'src/components/Home/Articles/articles.scss';
+import 'src/components/Home/Articles/articles.scss';
 import 'src/components/SortArticles/sortarticles.scss';
 
 // == Composant
@@ -13,8 +13,23 @@ const SortArticles = ({ match, getSortArticlesByPlateform, getSortArticlesByGenr
   const type = match.params.type;
   const category = match.params.category;
 
+  const [cat, setcat] = useState('');
+
   useEffect(() => {
-    // setcat(category);
+    if (category !== cat) {
+      if (type === 'plateform') {
+        setcat(category);
+        getSortArticlesByPlateform(category);
+      }
+      if (type === 'genre') {
+        setcat(category);
+        getSortArticlesByGenre(category);
+      }
+    }
+  });
+
+  useEffect(() => {
+    setcat(category);
     if (type === 'plateform') {
       getSortArticlesByPlateform(category);
     }
@@ -26,12 +41,12 @@ const SortArticles = ({ match, getSortArticlesByPlateform, getSortArticlesByGenr
   return (
     <div>
       <div id="articles">
-        <h1 id="title-sort" className="c-wings2">Article par {type} : {category}</h1>
+        <h1 id="title-sort" className="c-wings2">Recherche par {type} :  {category}</h1>
         <div className="article-div">
           {
             articlesSort.map((article) => {
               return (
-                <Link key={article.id} to={`/article/${article.id}`} exact="true">
+                <Link key={article.id} to={`/article/${article.id}`} exact>
                   <Card id="cards">
                     <div className="divimg">
                       <Image
@@ -40,7 +55,7 @@ const SortArticles = ({ match, getSortArticlesByPlateform, getSortArticlesByGenr
                       />
                     </div>
                     <Card.Content>
-                      <h3>{article.title}</h3>
+                      <h3 className="cardtitle">{article.title}</h3>
                       <Card.Description className="card-resume">
                         {article.resume}
                       </Card.Description>
@@ -54,14 +69,14 @@ const SortArticles = ({ match, getSortArticlesByPlateform, getSortArticlesByGenr
             })
           }
         </div>
+
       </div>
     </div>
   );
 };
 
 SortArticles.propTypes = {
-  getSortArticlesByPlateform: PropTypes.func.isRequired,
-  getSortArticlesByGenre: PropTypes.func.isRequired,
+  getSortArticles: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
   articlesSort: PropTypes.array.isRequired,
 };

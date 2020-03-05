@@ -41,7 +41,7 @@ class Carousel extends Component {
 
     const getVideo = () => {
       const table = [];
-      for (let index = 0; index < 1; index += 1) {
+      for (let index = 0; index < 3; index += 1) {
         table.push(
           <div
             className="video-container-carousel"
@@ -59,7 +59,7 @@ class Carousel extends Component {
         table
       );
     };
-    const number = 9000;
+    const number = 4000;
     return (
       <div className="hey">
         <ReactCarousel

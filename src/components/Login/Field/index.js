@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './field.scss';
 
-
+/* eslint-disable jsx-a11y/label-has-for */
 const Field = ({
   InputChange,
   placeholder,

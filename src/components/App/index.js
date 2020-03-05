@@ -14,6 +14,7 @@ import ForgottenPassword from 'src/containers/ForgottenPassword';
 import User from 'src/containers/User';
 import SortArticles from 'src/containers/SortArticles';
 import Footer from 'src/components/Footer';
+import SortArticlesByGame from 'src/containers/SortArticlesByGame';
 
 // import Footer from 'src/components/Footer';
 import './app.scss';
@@ -36,6 +37,7 @@ const App = () => (
         <Route path="/forgotten-password" exact component={ForgottenPassword} />
         <Route path="/signup" exact component={SignUp} />
         <Route path="/sort/:type/:category" exact component={SortArticles} />
+        <Route path="/games/:name/:id" exact component={SortArticlesByGame} />
       </main>
     </div>
     <footer>

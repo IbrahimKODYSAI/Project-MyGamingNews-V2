@@ -1,7 +1,14 @@
 import { connect } from 'react-redux';
 
 import Article from 'src/components/Article';
-import { onInputChange, onsubmitCommentary, getCommentary, getOneArticle } from '../../store/reducer';
+import {
+  onInputChange,
+  onsubmitCommentary,
+  getCommentary,
+  getOneArticle,
+  addALike,
+  addADislike,
+} from '../../store/reducer';
 
 
 const mapStateToProps = state => ({
@@ -24,7 +31,15 @@ const mapDispatchToProps = dispatch => ({
   },
   getAllCommentary: (articleId) => {
     dispatch(getCommentary(articleId));
-  }
+  },
+  addLike: () => {
+    console.log('add message');
+    dispatch(addALike());
+  },
+  addDislike: () => {
+    console.log('add message');
+    dispatch(addADislike());
+  },
 });
 
 

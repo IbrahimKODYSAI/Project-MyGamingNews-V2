@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-
 import YouTube from 'react-youtube';
+import { Icon, Button, Label } from 'semantic-ui-react';
+import ShareLink from 'react-twitter-share-link';
+import { Link } from 'react-router-dom';
+import FacebookShareLink from 'react-facebook-share-link';
+import PropTypes from 'prop-types';
 
 import './article.scss';
 
@@ -11,12 +13,13 @@ const Article = ({
   getArticle,
   getAllCommentary,
   article,
-  // articles,
   match,
   InputChange,
   newMessage,
   submitForm,
   messageList,
+  addLike,
+  addDislike,
 }) => {
   // const articlenews = articles.news;
   const opts = {
@@ -107,6 +110,38 @@ const Article = ({
             <p>{article.text}</p>
           </div>
         </section>
+        <div className="communication">
+          <div className="share-link">
+            <ShareLink>
+              {link => (
+                <a href={link}><Icon name="twitter square" color="blue" size="big" /></a>
+              )}
+            </ShareLink>
+            <FacebookShareLink>
+              {link => (
+                <a href={link}><Icon name="facebook official square" color="blue" size="big" /></a>
+              )}
+            </FacebookShareLink>
+            <Button as="div" labelPosition="right">
+              <Button icon onClick={addLike}>
+                <Icon name="thumbs up" />
+                Like
+              </Button>
+              <Label as="a" basic pointing="left">
+                {article.like}
+              </Label>
+            </Button>
+            <Button as="div" labelPosition="left" onClick={addDislike}>
+              <Label as="a" basic pointing="right">
+                {article.dislike}
+              </Label>
+              <Button icon>
+                <Icon name="thumbs down" />
+                  Dislike
+              </Button>
+            </Button>
+          </div>
+        </div>
         <section className="commentary-section">
           {JSON.parse(sessionStorage.getItem('token'))
             && (
@@ -168,7 +203,8 @@ Article.propTypes = {
   article: PropTypes.object.isRequired,
   getArticle: PropTypes.func.isRequired,
   getAllCommentary: PropTypes.func.isRequired,
-  // articles: PropTypes.object.isRequired,
+  addLike: PropTypes.func.isRequired,
+  addDislike: PropTypes.func.isRequired,
   InputChange: PropTypes.func.isRequired,
   newMessage: PropTypes.string.isRequired,
   submitForm: PropTypes.func.isRequired,

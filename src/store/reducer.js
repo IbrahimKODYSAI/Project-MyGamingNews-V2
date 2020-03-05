@@ -337,6 +337,19 @@ const initialState = {
     resume: '',
     text: '',
   }],
+
+  preferencies: {
+    genres: [
+      {
+        name: '',
+      },
+    ],
+    plateforms: [
+      {
+        name: '',
+      },
+    ],
+  },
 };
 
 // == Types
@@ -353,6 +366,12 @@ export const ON_SUBMIT_COMMENTARY = 'ON_SUBMIT_COMMENTARY';
 export const GET_COMMENTARY = 'GET_COMMENTARY';
 export const SORT_ARTICLES_BY_PLATEFROM = 'SORT_ARTICLES_BY_PLATEFROM';
 export const SET_SORT_ARTICLES_BY_GENRE = 'SET_SORT_ARTICLES_BY_GENRE';
+export const GET_ARTICLES_BY_GAMES = 'GET_ARTICLES_BY_GAMES';
+export const ADD_LIKE = 'ADD_LIKE';
+export const ADD_DISLIKE = 'ADD_DISLIKE';
+export const GET_PREFERENCIES = 'GET_PREFERENCIES';
+export const SEND_PREFERENCIES = 'SEND_PREFERENCIES';
+export const DEL_PREFERENCIES = 'DEL_PREFERENCIES';
 
 const SET_ACTIVE_ITEM = 'SET_ACTIVE_ITEM';
 const ON_INPUT_CHANGE = 'ON_INPUT_CHANGE';
@@ -365,6 +384,7 @@ const SET_PLATEFORM = 'SET_PLATEFORM';
 const SET_GENRE = 'SET_GENRE';
 const SET_COMMENTARY = 'SET_COMMENTARY';
 const SET_SORT_ARTICLES = 'SET_SORT_ARTICLES';
+const SET_PREFERENCIES = 'SET_PREFERENCIES';
 const CLEAN_REGISTER_FIELD = 'CLEAN_REGISTER_FIELD';
 
 // == Reducer
@@ -433,6 +453,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         articlesSort: action.articles,
       };
+    case SET_PREFERENCIES:
+      return {
+        ...state,
+        preferencies: action.preferencies,
+      };
     case CLEAN_REGISTER_FIELD: {
       return {
         ...state,
@@ -443,6 +468,18 @@ const reducer = (state = initialState, action = {}) => {
         registerUserName: '',
         registerEmail: '',
         registerPassword: '',
+        creatTitle: '',
+        creatText: '',
+        createResume: '',
+        creatGameName: '',
+        creatVideo: '',
+        creatImage: '',
+        creatPlatform: '',
+        creatPlatform2: '',
+        creatPlatform3: '',
+        creatGenre: '',
+        creatGenre2: '',
+        creatGenre3: '',
       };
     }
     default:
@@ -547,6 +584,33 @@ export const setArticlesSort = articles => ({
 export const SortArticlesByGenre = category => ({
   type: SET_SORT_ARTICLES_BY_GENRE,
   category,
+});
+export const addALike = () => ({
+  type: ADD_LIKE,
+});
+export const addADislike = () => ({
+  type: ADD_DISLIKE,
+});
+export const getPreferencies = () => ({
+  type: GET_PREFERENCIES,
+});
+export const setPreferencies = preferencies => ({
+  type: SET_PREFERENCIES,
+  preferencies,
+});
+export const sendPreferencies = (name, category) => ({
+  type: SEND_PREFERENCIES,
+  name,
+  category,
+});
+export const delPreferencies = (name, category) => ({
+  type: DEL_PREFERENCIES,
+  name,
+  category,
+});
+export const getArticlesByGames = gameId => ({
+  type: GET_ARTICLES_BY_GAMES,
+  gameId,
 });
 // == Export
 export default reducer;

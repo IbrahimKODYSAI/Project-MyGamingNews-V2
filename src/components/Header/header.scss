@@ -64,7 +64,8 @@
       margin: auto 1em auto 0em;
 
       & img{
-        width: 15em;
+        margin-left: 1em;
+        width: 5em;
         vertical-align: middle;
       }
     }
@@ -170,5 +171,11 @@
   &:hover{
     color: orangered;
     font-weight: bold;
+  }
+}
+.titlelogo{
+  font-size: 2em;
+  &:hover{
+    color: white;
   }
 }

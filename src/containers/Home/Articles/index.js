@@ -5,6 +5,7 @@ import { getGamesList } from 'src/store/reducer';
 
 const mapStateToProps = state => ({
   articles: state.articles,
+  gamesList: state.gamesList,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

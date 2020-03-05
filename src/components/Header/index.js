@@ -63,6 +63,7 @@ const Header = ({
         <div className="header-big">
           <div className="header-big_logo">
             <Link to="/"><h1><img src={logo1} alt="" /></h1></Link>
+            <Link to="/"><span className="titlelogo">MYGamingNews</span></Link>
           </div>
           <div className="header-big-nav">
             <ul className="header-big-nav-ul">
@@ -95,7 +96,7 @@ const Header = ({
                           to={`/sort/plateform/${category.name}`}
                           exact="true"
                         >
-                          <button className="navitems" type="button" name="plateform" onClick={handleMenuClick}>{category.name}</button>
+                          <p className="navitems" type="button" name="plateform" onClick={handleMenuClick}>{category.name}</p>
                         </Link>
                       </li>
                     ))}
@@ -121,7 +122,7 @@ const Header = ({
                           to={`/sort/genre/${genre.name}`}
                           exact="true"
                         >
-                          <button className="navitems" type="button" name="genre" onClick={handleMenuClick}>{genre.name}</button>
+                          <p className="navitems" type="button" name="genre" onClick={handleMenuClick}>{genre.name}</p>
 
                         </Link>
                       </li>
