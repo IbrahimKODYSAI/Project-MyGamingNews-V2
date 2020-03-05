@@ -129,7 +129,7 @@
   }
 }
 .game-article{
-
+  padding: 0.8em;
   & h2{
     text-align: left;
     font-size: 1.5em;
@@ -144,6 +144,9 @@
 }
 .zone-text{
   margin: 3em 0;
+}
+.commentary-section{
+  padding: 0.8em;
 }
 .form-text{
   & textarea {
@@ -167,17 +170,67 @@
     padding: .8em 1em;
   }
 }
-
+.userNotlog-comInfo{
+  margin: 4em 0 2em 0;
+  width: 100%;
+  padding: 2em;
+  background-color: rgb(171, 217, 243);
+}
 .message-list{
   &_item{
-    width: 100%;
+    position: relative;
+    width: 85%;
     text-align: left;
-    background-color: rgb(246, 250, 255);
+    background-color: rgb(219, 232, 248);
     border-radius: 0.5em;
     padding: 1em;
     margin: 1em 0;
     font-size: 0.8em;
+    z-index: 100;
+    &::before {
+      position: absolute;
+      content: '';
+      background-color:rgb(219, 232, 248);
+      width: 20px;
+      transform: rotate(45deg);
+      transform-origin: 50% 50%;
+      height: 20px;
+      left: -0.5em;
+      top: 0.4em;
+    }
   }
+}
+.message{
+  display: flex;
+}
+.divImg{
+  border-radius: 50%;
+  border: 3px solid orangered;
+  width: 56px;
+  height: 56px;
+  margin: 1em 1em 0 0;
+  overflow: hidden;
+  &-imagesize{
+    margin-top: -0.3em;
+    width: 100%;
+  }
+}
+#userInfo{
+  display: flex;
+  flex:wrap;
+  justify-content: space-between; 
+  #userInfo-date{
+    font-size: 0.8em;
+    color: rgb(34, 139, 201);
+  }
+  #userInfo-userName{
+    color: orangered;
+    font-weight: bold;
+  }
+}
+.share-link{
+  text-align: left;
+  margin-bottom: 1em;
 }
 
 @media screen and (max-width: 1024px){

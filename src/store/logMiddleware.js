@@ -6,7 +6,34 @@ import {
   GET_USER_INFO,
   setUserInfo,
   ON_SUBMIT_ARTICLE,
+  GET_ARTICLES,
+  setArticles,
+  GET_ONE_ARTICLE,
+  setOneArticle,
+  ON_SUBMIT_COMMENTARY,
+  GET_COMMENTARY,
+  getCommentary,
+  setCommentary,
   cleanRegisterFields,
+  GET_GAMES,
+  setGamesList,
+  GET_PLATEFORM,
+  setPlateform,
+  GET_GENRE,
+  setGenre,
+  SORT_ARTICLES_BY_PLATEFROM,
+  SET_SORT_ARTICLES_BY_GENRE,
+  setArticlesSort,
+  GET_ARTICLES_BY_GAMES,
+  ADD_LIKE,
+  ADD_DISLIKE,
+  getGenres,
+  getPlateform,
+  GET_PREFERENCIES,
+  setPreferencies,
+  SEND_PREFERENCIES,
+  getPreferencies,
+  DEL_PREFERENCIES,
 } from 'src/store/reducer';
 
 const logMiddleware = store => next => (action) => {
@@ -110,9 +137,287 @@ const logMiddleware = store => next => (action) => {
         // ... and other options
       })
         .then((response) => {
+          console.log(response.data);
+          store.dispatch(cleanRegisterFields());
+          store.dispatch(getGenres());
+          store.dispatch(getPlateform());
+        })
+        // en cas d'echec : catch
+        .catch((error) => {
+          console.error(error.message);
+          console.error(error.response);
+        });
+      break;
+    case GET_ARTICLES:
+      // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+      axios.get('http://localhost:3000/api/articles/listArticle/')
+        .then((response) => {
           // console.log(response.data);
-          // store.dispatch(getGenres());
-          // store.dispatch(getPlateform());
+          store.dispatch(setArticles(response.data));
+        })
+        // en cas d'echec : catch
+        .catch((error) => {
+          console.error(error.message);
+          console.error(error.response);
+        });
+      break;
+    case GET_ONE_ARTICLE:
+      console.log('action', action);
+      // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+      axios.post('http://localhost:3000/api/articles/getOne', {
+        articleId: action.articleId,
+      })
+        .then((response) => {
+          // console.log(response.data);
+          store.dispatch(setOneArticle(response.data));
+        })
+        // en cas d'echec : catch
+        .catch((error) => {
+          console.error(error.message);
+          console.error(error.response);
+        });
+      break;
+    case ON_SUBMIT_COMMENTARY:
+      // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+      axios.request({
+        url: 'http://localhost:3000/api/commentary',
+        method: 'post',
+        data: {
+          ArticleId: store.getState().article.id,
+          commentary: store.getState().newMessage,
+        },
+        headers: {
+          authorization: `Bearer ${JSON.parse(sessionStorage.getItem('token'))}`,
+        },
+      })
+        .then((response) => {
+          // console.log(response.data);
+          store.dispatch(getCommentary(store.getState().article.id));
+        })
+        // en cas d'echec : catch
+        .catch((error) => {
+          console.error(error.message);
+          console.error(error.response);
+        });
+      break;
+    case GET_COMMENTARY:
+      axios.post('http://localhost:3000/api/commentary/getCom', {
+        articleId: action.articleId,
+      })
+        .then((response) => {
+          // console.log(response.data);
+          store.dispatch(setCommentary(response.data));
+        })
+        // en cas d'echec : catch
+        .catch((error) => {
+          console.error(error.message);
+          console.error(error.response);
+        });
+      break;
+    case GET_GAMES:
+      // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+      axios.request({
+        url: 'http://localhost:3000/api/articles/getArticlesByPreferencies/',
+        method: 'get',
+        headers: {
+          authorization: `Bearer ${JSON.parse(sessionStorage.getItem('token'))}`,
+        },
+      })
+        .then((response) => {
+          // console.log(response.data);
+          store.dispatch(setGamesList(response.data));
+        })
+        // en cas d'echec : catch
+        .catch((error) => {
+          console.error(error.message);
+          console.error(error.response);
+        });
+      break;
+    case GET_PLATEFORM:
+      // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+      axios.get('http://localhost:3000/api/plateform/getAll/')
+        .then((response) => {
+          // console.log(response.data);
+          store.dispatch(setPlateform(response.data));
+        })
+        // en cas d'echec : catch
+        .catch((error) => {
+          console.error(error.message);
+          console.error(error.response);
+        });
+      break;
+    case GET_GENRE:
+      // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+      axios.get('http://localhost:3000/api/genre/getAll/')
+        .then((response) => {
+          // console.log(response.data);
+          store.dispatch(setGenre(response.data));
+        })
+        // en cas d'echec : catch
+        .catch((error) => {
+          console.error(error.message);
+          console.error(error.response);
+        });
+      break;
+    case SORT_ARTICLES_BY_PLATEFROM:
+      // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+      axios.request({
+        url: 'http://localhost:3000/api/articles/sortArticlesByPlateform',
+        method: 'post',
+        data: {
+          category: action.category,
+        },
+      })
+        .then((response) => {
+          // console.log(response.data);
+          store.dispatch(setArticlesSort(response.data));
+        })
+        // en cas d'echec : catch
+        .catch((error) => {
+          console.error(error.message);
+          console.error(error.response);
+        });
+      break;
+    case SET_SORT_ARTICLES_BY_GENRE:
+      // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+      axios.request({
+        url: 'http://localhost:3000/api/articles/sortArticlesByGenre',
+        method: 'post',
+        data: {
+          category: action.category,
+        },
+      })
+        .then((response) => {
+          // console.log(response.data);
+          store.dispatch(setArticlesSort(response.data));
+        })
+        // en cas d'echec : catch
+        .catch((error) => {
+          console.error(error.message);
+          console.error(error.response);
+        });
+      break;
+    case GET_ARTICLES_BY_GAMES:
+      // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+      axios.request({
+        url: 'http://localhost:3000/api/articles/sortArticleByGame/',
+        method: 'post',
+        data: {
+          gameId: action.gameId,
+        },
+      })
+        .then((response) => {
+          // console.log(response.data);
+          store.dispatch(setArticlesSort(response.data));
+        })
+        // en cas d'echec : catch
+        .catch((error) => {
+          console.error(error.message);
+          console.error(error.response);
+        });
+      break;
+    case ADD_LIKE:
+      // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+      axios.request({
+        url: 'http://localhost:3000/api/articles/addLike',
+        method: 'post',
+        data: {
+          articleId: store.getState().article.id,
+        },
+        headers: {
+          authorization: `Bearer ${JSON.parse(sessionStorage.getItem('token'))}`,
+        },
+      })
+        .then((response) => {
+          // console.log(response.data);
+          store.dispatch(setOneArticle(response.data));
+        })
+        // en cas d'echec : catch
+        .catch((error) => {
+          console.error(error.message);
+          console.error(error.response);
+        });
+      break;
+    case ADD_DISLIKE:
+      // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+      axios.request({
+        url: 'http://localhost:3000/api/articles/addDislike',
+        method: 'post',
+        data: {
+          articleId: store.getState().article.id,
+        },
+        headers: {
+          authorization: `Bearer ${JSON.parse(sessionStorage.getItem('token'))}`,
+        },
+      })
+        .then((response) => {
+          // console.log(response.data);
+          store.dispatch(setOneArticle(response.data));
+        })
+        // en cas d'echec : catch
+        .catch((error) => {
+          console.error(error.message);
+          console.error(error.response);
+        });
+      break;
+    case GET_PREFERENCIES:
+      // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+      axios.request({
+        url: 'http://localhost:3000/api/users/getPreferencies',
+        method: 'post',
+        headers: {
+          authorization: `Bearer ${JSON.parse(sessionStorage.getItem('token'))}`,
+        },
+      })
+        .then((response) => {
+          // console.log(response.data);
+          store.dispatch(setPreferencies(response.data));
+        })
+        // en cas d'echec : catch
+        .catch((error) => {
+          console.error(error.message);
+          console.error(error.response);
+        });
+      break;
+    case SEND_PREFERENCIES:
+      // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+      axios.request({
+        url: 'http://localhost:3000/api/users/setPreference',
+        method: 'post',
+        data: {
+          name: action.name,
+          category: action.category,
+        },
+        headers: {
+          authorization: `Bearer ${JSON.parse(sessionStorage.getItem('token'))}`,
+        },
+      })
+        .then((response) => {
+          // console.log(response.data);
+          store.dispatch(getPreferencies());
+        })
+        // en cas d'echec : catch
+        .catch((error) => {
+          console.error(error.message);
+          console.error(error.response);
+        });
+      break;
+    case DEL_PREFERENCIES:
+      // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+      axios.request({
+        url: 'http://localhost:3000/api/users/delPreference/',
+        method: 'post',
+        data: {
+          name: action.name,
+          category: action.category,
+        },
+        headers: {
+          authorization: `Bearer ${JSON.parse(sessionStorage.getItem('token'))}`,
+        },
+      })
+        .then((response) => {
+          // console.log(response.data);
+          store.dispatch(getPreferencies());
         })
         // en cas d'echec : catch
         .catch((error) => {

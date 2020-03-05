@@ -44,7 +44,7 @@ const Header = ({
           </div>
           <div className="header-small_account">
             {JSON.parse(sessionStorage.getItem('token'))
-              && <div><AccountButton avatar={avatar} /></div>
+              && (<div><AccountButton avatar={avatar} /></div>)
             }
             {!JSON.parse(sessionStorage.getItem('token'))
               && (
@@ -63,24 +63,26 @@ const Header = ({
         <div className="header-big">
           <div className="header-big_logo">
             <Link to="/"><h1><img src={logo1} alt="" /></h1></Link>
+            <Link to="/"><span className="titlelogo">MYGamingNews</span></Link>
           </div>
           <div className="header-big-nav">
             <ul className="header-big-nav-ul">
-              <button
-                type="button"
-                className={activeItem === 'home' ? 'header-big-nav-items active' : 'header-big-nav-items '}
-                key="Accueil"
-                name="home"
-                onClick={handleMenuClick}
-              >
-                HOME
-              </button>
+              <Link to="/" exact="true">
+                <button
+                  type="button"
+                  className={activeItem === 'home' ? 'header-big-nav-items active' : 'header-big-nav-items '}
+                  key="Accueil"
+                  name="home"
+                  onClick={handleMenuClick}
+                >
+                  HOME
+                </button>
+              </Link>
               <button
                 type="button"
                 className={activeItem === 'plateform' ? 'header-big-nav-items active' : 'header-big-nav-items '}
                 key="plateform"
                 name="plateform"
-                onClick={handleMenuClick}
               >PLATEFORM
                 <div className="submenu">
                   <ul className="submenu-lists">
@@ -90,7 +92,12 @@ const Header = ({
                         key={category.id}
                         name={category.name}
                       >
-                        <p>{category.name}</p><img className="submenu-lists-items_image" src={category.image} alt="" />
+                        <Link
+                          to={`/sort/plateform/${category.name}`}
+                          exact="true"
+                        >
+                          <p className="navitems" type="button" name="plateform" onClick={handleMenuClick}>{category.name}</p>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -111,7 +118,13 @@ const Header = ({
                         key={genre.id}
                         name={genre.name}
                       >
-                        <a href=""><p>{genre.name}</p><img className="submenu-lists-items_image" src="src/images/playstation.png" alt="" /></a>
+                        <Link
+                          to={`/sort/genre/${genre.name}`}
+                          exact="true"
+                        >
+                          <p className="navitems" type="button" name="genre" onClick={handleMenuClick}>{genre.name}</p>
+
+                        </Link>
                       </li>
                     ))}
                   </ul>

@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import {
   Menu,
   Dropdown,
+  Button,
 } from 'semantic-ui-react';
+import AccountButton from 'src/components/ResponsivNav/SideDrawer/Accountbutton';
 import './SideDrawer.scss';
 
 const SideDrawer = ({
@@ -14,6 +17,8 @@ const SideDrawer = ({
   getAllPlateforms,
   getAllGenres,
   show,
+  userInfo,
+  avatar,
 }) => {
   let cssClassNames = 'side-drawer';
   if (show) {
@@ -24,10 +29,35 @@ const SideDrawer = ({
   useEffect(() => {
     getAllPlateforms();
     getAllGenres();
+    userInfo();
   }, []);
+  userInfo();
 
   return (
     <div className={cssClassNames}>
+      <div className="avatar-login">
+        {JSON.parse(sessionStorage.getItem('token'))
+          && <div className="accountbuton"><AccountButton avatar={avatar} /></div>
+        }
+        {!JSON.parse(sessionStorage.getItem('token'))
+          && (
+          <div>
+            <Link
+              to="/Sign_Up"
+              exact
+            >
+              <Button className="lg button" primary>Sign-Up</Button>
+            </Link>
+            <Link
+              to="/login"
+              exact
+            >
+              <Button className="lg button">Login</Button>
+            </Link>
+          </div>
+          )
+        }
+      </div>
 
       <div className="platformbutton">
         {categories.map(category => (
@@ -45,7 +75,7 @@ const SideDrawer = ({
         className="typemenu"
         active={activeItem === 'GAMES'}
       >
-        <Dropdown text="TYPES" simple item>
+        <Dropdown text="GENRES" simple item>
           <Dropdown.Menu>
             {genres.map(genre => (
               <Dropdown.Item key={genre.id} text={genre.name} />
@@ -74,5 +104,7 @@ SideDrawer.propTypes = {
   categories: PropTypes.array.isRequired,
   getAllPlateforms: PropTypes.func.isRequired,
   getAllGenres: PropTypes.func.isRequired,
+  userInfo: PropTypes.func.isRequired,
+  avatar: PropTypes.string.isRequired,
 };
 export default SideDrawer;

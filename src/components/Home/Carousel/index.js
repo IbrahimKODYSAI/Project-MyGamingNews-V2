@@ -5,6 +5,17 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import YouTube from 'react-youtube';
 import './carousel.scss';
 
+const opts1 = {
+  width: '640',
+  height: '500',
+  playerVars: {
+    modestbranding: 1,
+    autohide: 1,
+    showinfo: 0,
+  },
+};
+
+
 class Carousel extends Component {
   state ={}
 
@@ -26,45 +37,40 @@ class Carousel extends Component {
   }
 
   render() {
-    const opts1 = {
-      width: '640',
-      height: '500',
-      playerVars: {
-        modestbranding: 1,
-        autohide: 1,
-        showinfo: 0,
-      },
-    };
     this.getVideoLink();
+
+    const getVideo = () => {
+      const table = [];
+      for (let index = 0; index < 3; index += 1) {
+        table.push(
+          <div
+            className="video-container-carousel"
+            key={this.videoLinks[index].link}
+          >
+            <YouTube
+              id="desktop"
+              videoId={this.videoLinks[index].link}
+              opts={opts1}
+            />
+          </div>,
+        );
+      }
+      return (
+        table
+      );
+    };
+    const number = 4000;
     return (
       <div className="hey">
         <ReactCarousel
           useKeyboardArrows
-          interval="9000"
+          interval={number}
           infiniteLoop
           autoPlay
           showThumbs={false}
           className="carousel1"
         >
-          {/* <video src="assets/video/lol.mp4" /> */}
-          {this.videoLinks.map(video => (
-            <div
-              className="video-container-carousel"
-              key={video.link}
-            >
-              <YouTube
-                id="desktop"
-                videoId={video.link}
-                opts={opts1}
-              />
-              {/* <YouTube
-                id="screen"
-                videoId={video.link}
-                opts={opts2}
-              /> */}
-              {/* <p className="legend">{video.title}</p> */}
-            </div>
-          ))}
+          {getVideo()}
         </ReactCarousel>
       </div>
     );

@@ -1,0 +1,48 @@
+#title-sort {
+  margin-top: 3%;
+}
+.c-wings2{
+  display: block;
+  position: absolute;
+  font-size: 1.2em;
+  top: 0em;
+  width: 95%;
+  z-index: 100;
+  color: rgb(5, 5, 5);
+  // border: 3px solid red;
+}
+.c-wings2::before, .c-wings2::after{
+  content: '';
+  position: absolute;
+  display: block;
+  height: 3px;
+  width: 40%;
+  top: 0.4em;   
+}
+
+.c-wings2::before{
+  left: 0;
+  background-image: linear-gradient(to right, transparent 0%, #2698E5 20%, #2698E5 50%, #d61626 80%, transparent 0%);
+
+}
+.c-wings2::after{
+  right: 0;
+  background-image: linear-gradient(to left, transparent 0%, #2698E5 20%, #2698E5 50%, #d61626 80%, transparent 0%);
+
+}
+
+#articles{
+  position: relative;
+  padding: 7% 2em 2em 2em;
+}
+.article-div{
+  display: flex;
+  justify-content: center;
+}
+.cardtitle{
+   margin-bottom: 0.5em;
+   color: orangered;
+ }
+#cards{
+  margin: 0 0.4em;
+}
